@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import {useEffect, useState} from "react";
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    if (3 <= count && count % 3 === 0) {
+      setText(count + " is divisible by 3.")
+    } else {
+      setText(count + " is not divisible by 3.")
+    }
+  }, [count])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{marginLeft: "30px"}}>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <p>{text}</p>
     </div>
   );
 }
